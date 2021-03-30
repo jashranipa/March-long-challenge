@@ -1,0 +1,132 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+long long int min(long long int a,long long int b,long long int c)
+{
+    if(a>=c && b>=c)
+    {
+        return c;
+    }
+    if(a>=b && c>=b)
+    {
+        return b;
+    }
+    if(c>=a && b>=a)
+    {
+        return a;
+    }
+    return 0;
+}
+
+int main()
+{
+   long long int t;
+    cin>>t;
+
+    while(t--)
+    {
+       long long int n,e,h,a,b,c;
+        cin>>n>>e>>h>>a>>b>>c;
+       long long int p,q,r;
+        if(e>h)
+        {
+            if(n>h+((e-h)/2))
+            {
+                cout<<"-1"<<endl;
+                continue;
+            }
+            if(h>=n && min(a,b,c)==c)
+            {
+                cout<<(n*c)<<endl;
+                continue;
+            }
+            if(min(a,b,c)==c && min(a,b)==a)
+            {
+                cout<<((h*c)+((n-h)*a))<<endl;
+                continue;
+            } 
+              
+        }
+        if(e==h)
+        {
+
+            if(e<n)
+            {
+                cout<<"-1"<<endl;
+                continue;
+            }
+            if(min(a,b,c)==c)
+            {
+                cout<<((n*c))<<endl;
+                continue;
+            }
+            
+
+        }
+        if(e<h)
+        {
+            if((e+((h-e)/3))<n)
+            {
+                cout<<"-1"<<endl;
+                continue;
+            }
+            if(e>=n && min(a,b,c)==c)
+            {
+                cout<<(n*c)<<endl;
+                continue;
+            }
+
+            if(min(a,b,c)==c && min(a,b)==b)
+            {
+                cout<<((e*c)+((n-e)*b))<<endl;
+                continue;
+            }
+
+        }
+        
+            //    2p+r <= e ; 0<=(p,q,r)<=n
+            //    3q+r <= h ;
+            //    p+q+r ==n;
+            //    such that p*a + q*b + r*c  is min.
+            // what you think usko code
+
+        // if(min(a,b,c)==c)
+        // {
+        //     cout<<(n*c)<<endl;
+        //     continue;
+        // }    
+        long  long int sum=n*(a+b+c);
+            
+
+        for(long long int p=0;p<=n;p++)
+        {
+            for(long long int q=0;q<=(n-p);q++)
+            {
+               long long int r=n-p-q;
+                if((p)>(e-n+q))
+                {
+                    q = (q + p+n-e-1);
+                    continue;   
+
+                }
+                if((3*q)>(h-r))
+                {
+                    break;
+                }
+                long long int qwe= ((p*a)+(q*b)+(r*c));
+                if(qwe<sum)
+                {
+                    sum = (p*a)+(q*b)+(r*c) ;
+                }
+
+
+            }
+        }
+        
+        cout<<sum<<endl;
+        
+        
+
+    }
+    return 0;
+}
