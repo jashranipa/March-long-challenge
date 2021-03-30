@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+long long int getbit(long long int n,long long int pos)
+{
+    return ((n&(1<<pos))!=0);
+}
+
+long long int setbit(long long int n,long long int pos)
+{
+    return (n | (1<<pos));
+}
+
+long long int clearbit(long long int n,long long int pos)
+{
+   long long int mask = ~(1<<pos);
+    return (n & (mask));
+}
+int main()
+{
+    
+   long long int t;
+    cin>>t;
+    //1010 --> 1101 0111
+    
+    while (t--)
+    {
+       long long int c;
+        cin>>c;
+       long long int pos=0;
+       long long int d=log2(c);
+        d++;
+       long long int a=c;
+       long long int b=0;
+        for(int i=0;i<d;i++)
+        {
+            if(!getbit(c,i))
+            {
+                a=setbit(a,i);
+                b=setbit(b,i);
+            }
+            else
+            {
+                pos=i;
+            }
+            
+        }
+        
+        b = setbit(b,pos);
+        a = clearbit(a,pos);
+        
+        cout<<(a*b)<<endl;
+
+        
+    }    
+    return 0;
+}
