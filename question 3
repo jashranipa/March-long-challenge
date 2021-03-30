@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    long long int t;
+    cin>>t;
+
+    while(t--)
+    {
+        long long int n;
+        cin>>n;
+        long long int a[n];
+        for(long long int i=0;i<n;i++)
+        {
+            cin>>a[i];
+        }
+        sort(a,a+n);
+        int rounds=0,flag=0;
+        for(int i=0;i<n;i++)
+        {
+            int r=i+1-a[i];
+            if(r<0)
+            {
+                flag=1;
+                break;
+            }
+            rounds=rounds+r;
+        }
+        if(flag==1)
+        {
+            cout<<"Second"<<endl;
+            continue;
+        }
+
+        if(rounds%2==0)
+        {
+            cout<<"Second"<<endl;
+        }
+        else
+        {
+            cout<<"First"<<endl;
+        }
+    }
+
+    return 0;
+}
